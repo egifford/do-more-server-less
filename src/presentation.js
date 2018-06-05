@@ -13,18 +13,25 @@ import {
   Quote,
   Slide,
   Text,
-  Image,
+  // Image,
   Fill,
   Layout,
   Appear,
+  // Table,
+  // TableRow,
+  // TableHeaderItem,
+  // TableItem
 } from 'spectacle';
+
+// Import Custom Components
+import LanguageTable from './LanguageTable';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
 // Images
 import jsCode from './img/js-code.jpg';
-import jsCode2 from './img/js-code-2.jpg';
+// import jsCode2 from './img/js-code-2.jpg';
 import NameSvg from './NameSvg';
 import LogoSvg from './LogoSvg';
 import AwsLogo from './AwsLogo';
@@ -49,10 +56,6 @@ const theme = createTheme(
 );
 
 export default class Presentation extends React.Component {
-  constructor(props){
-    super(props)
-  }
-
   render() {
     return (
       <Deck
@@ -100,13 +103,13 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
       {/* Slide 4 */}
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
           <BlockQuote>
             <Quote>Where things get funky</Quote>
           </BlockQuote>
         </Slide>
       {/* Slide 5 */}
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
           <Heading size={2} fit caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;Containerized Serverless&nbsp;
           </Heading>
@@ -127,7 +130,7 @@ export default class Presentation extends React.Component {
             </Appear>
         </Slide>
       {/* Slide 6 */}
-        <Slide transition={['zoom']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
           <Heading fit size={1} caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;Why are they not really serverless?&nbsp;
           </Heading>
@@ -150,7 +153,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
       {/* Slide 7 */}
-        <Slide transition={['zoom']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading padding="10px" fit size={1} caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;So where can I find serverless?&nbsp;
           </Heading>
@@ -179,7 +182,7 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 8 */}
-        <Slide transition={['zoom']} bgColor="primary" textColor="secondary">
+        <Slide transition={['slide']} bgColor="primary" textColor="secondary">
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;AWS Lambda&nbsp;
           </Heading>
@@ -193,7 +196,7 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 9 */}
-        <Slide transition={['zoom']} bgColor="primary" textColor="secondary">
+        <Slide transition={['slide']} bgColor="primary" textColor="secondary">
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;Cloud Functions&nbsp;
           </Heading>
@@ -207,7 +210,21 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 10 */}
-      <Slide transition={['zoom']} bgColor="secondary" textColor="primary">
+      <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+          <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="secondary" bgColor="tertiary">
+            &nbsp;Azure Functions&nbsp;
+          </Heading>
+          <Text textAlign="center" >
+            &nbsp;
+          </Text>
+          <Layout>
+            <Fill>
+              <AzureLogo size="80%" />
+            </Fill>
+          </Layout>
+        </Slide>
+      {/* Slide 11 */}
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="secondary" bgColor="tertiary">
             &nbsp;IBM OpenWhisk&nbsp;
           </Heading>
@@ -219,6 +236,24 @@ export default class Presentation extends React.Component {
               <IBMLogo size="70%" />
             </Fill>
           </Layout>
+        </Slide>
+      {/* Slide 12 */}
+        <Slide transition={['spin']} bgColor="primary" textColor="secondary">
+          <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
+            &nbsp;Languages&nbsp;
+          </Heading>
+          <Text textAlign="center" >
+            &nbsp;
+          </Text>
+          <LanguageTable />
+          <Text textColor="primary" bgColor="tertiary" textAlign="right" textSize="20px">* available via Docker</Text>
+        </Slide>
+      {/* Slide 13 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <BlockQuote>
+            <Quote> JavaScript is king! </Quote>
+            <Cite> Me </Cite>
+          </BlockQuote>
         </Slide>
       </Deck>
     );
