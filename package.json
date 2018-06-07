@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.0",
+    "ajv-keywords": "^3.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-mt-svg-lines": "^0.8.4",
+    "spectacle-code-slide": "^0.5.2",
     "spectacle-scripts": "2.0.0"
   },
   "scripts": {

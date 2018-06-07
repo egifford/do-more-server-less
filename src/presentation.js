@@ -13,7 +13,7 @@ import {
   Quote,
   Slide,
   Text,
-  // Image,
+  Image,
   Fill,
   Layout,
   Appear,
@@ -25,6 +25,7 @@ import {
 
 // Import Custom Components
 import LanguageTable from './LanguageTable';
+import CodeSlide from 'spectacle-code-slide';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
@@ -38,6 +39,13 @@ import AwsLogo from './AwsLogo';
 import GoogleLogo from './GoogleLogo';
 import AzureLogo from './AzureLogo';
 import IBMLogo from './IBMLogo';
+import checkoutNow from './img/checkout_now.png';
+import OAuth from './img/OAuth.png';
+import CheckEmail from './img/CheckEmail.png';
+import CheckoutButtons from './img/CheckoutButtons.png';
+import Checkout from './img/Checkout.png';
+
+import serverlessFunctions from './serverlessFunctions.example';
 
 // Require CSS
 require('normalize.css');
@@ -136,18 +144,18 @@ export default class Presentation extends React.Component {
           </Heading>
           <List transition={['zoom']}>
             <Appear>
-              <ListItem padding="10px">
+              <ListItem bold padding="10px">
                 You control the server resources
               </ListItem>
             </Appear>
             <Appear>
-              <ListItem padding="10px">
+              <ListItem bold padding="10px">
                 Code is broken up into neat little individual functions but are running on your nice little container
               </ListItem>
             </Appear>
             <Appear>
-              <ListItem padding="10px">
-                If always running, so you're always paying
+              <ListItem bold padding="10px">
+                It's always running, so you're always paying
               </ListItem>
             </Appear>
           </List>
@@ -180,6 +188,9 @@ export default class Presentation extends React.Component {
               </Fill>
             </Appear>
           </Layout>
+          <Appear>
+              <Text textColor="primary">* These use to be logos, but I didn't have time to clear them with my legal team </Text>
+            </Appear>
         </Slide>
       {/* Slide 8 */}
         <Slide transition={['slide']} bgColor="primary" textColor="secondary">
@@ -191,7 +202,7 @@ export default class Presentation extends React.Component {
           </Text>
           <Layout>
             <Fill padding="10px">
-              <AwsLogo size="75%" />
+              <AwsLogo size="75%" lineHeight={5} />
             </Fill>
           </Layout>
         </Slide>
@@ -251,9 +262,155 @@ export default class Presentation extends React.Component {
       {/* Slide 13 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <BlockQuote>
-            <Quote> JavaScript is king! </Quote>
+            <Quote> JavaScript is the king of serverless! </Quote>
             <Cite> Me </Cite>
           </BlockQuote>
+        </Slide>
+      {/* Slide 14 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading>
+            Let's talk about an actual serverless application
+          </Heading>
+        </Slide>
+      {/* Slide 15 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading textColor="primary" bgColor="tertiary">
+            What I built
+          </Heading>
+          <br />
+          <Quote textSize="36px" bgColor="secondary" textColor="primary">
+            A service that generates links from Square checkout to instantly checkout with an item from your catalog.
+          </Quote>
+          <br />
+          <Text textColor="tertiary" textAlign="left"> What it contains: </Text>
+          <List textColor="tertiary">
+            <ListItem> OAuth to Square </ListItem>
+            <ListItem> User managment via Firebase </ListItem>
+            <ListItem> Static site via Firebase Hosting </ListItem>
+          </List>
+        </Slide>
+      {/* Slide 16 */}
+        <Slide transition={['slide']} bgImage={checkoutNow} textColor="primary">
+        </Slide>
+      {/* Slide 17 */}
+        <Slide transition={['slide']} bgImage={OAuth} textColor="primary">
+        </Slide>
+      {/* Slide 18 */}
+        <Slide transition={['slide']} bgImage={CheckEmail} textColor="primary">
+        </Slide>
+      {/* Slide 19 */}
+        <Slide transition={['slide']} bgColor="tertiary" textColor="primary">
+          <Image src={CheckoutButtons} />
+        </Slide>
+      {/* Slide 20 */}
+        <Slide transition={['slide']} bgImage={Checkout} textColor="primary">
+        </Slide>
+      {/* Slide 21 */}
+        <CodeSlide
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!./serverlessFunctions.example")}
+        />
+      {/* Slide 21 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Why my application sucks&nbsp;
+          </Heading>
+          <List bold textColor="tertiary">
+            <Appear>
+              <ListItem>
+                Cold starts
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                Version control
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                Testing
+              </ListItem>
+            </Appear>
+          </List>
+        </Slide>
+      {/* Slide 22 */}
+      <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Cold starts&nbsp;
+          </Heading>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Your function hasn't run in a while, or there are a lot of requests and more instances need to be spun up.
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Why is it bad?
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Users hate waiting
+          </Text>
+          </Appear>
+        </Slide>
+      {/* Slide 23 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Version Control&nbsp;
+          </Heading>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Do you know which version of your function is currently deployed?
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Of course you do, unless someone else deployed...
+          </Text>
+          </Appear>
+        </Slide>
+      {/* Slide 24 */}
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Testing&nbsp;
+          </Heading>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            How do you replicate a system that you have no control over?
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            There are some solutions for some providers, but it doesn't work 100%
+          </Text>
+          </Appear>
+        </Slide>
+      {/* Slide 25 */}
+        <Slide transition={['spin']} bgColor="primary" textColor="primary">
+          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Silver Lining&nbsp;
+          </Heading>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            I shouldn't need to worry about scaling *fingers crossed*
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            I never had to configure a server.
+          </Text>
+          </Appear>
         </Slide>
       </Deck>
     );
