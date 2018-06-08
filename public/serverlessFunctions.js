@@ -18,18 +18,14 @@ exports.catalog = functions.https.onRequest((request, response) => {
       var squareToken = admin.database()
                              .ref(`/squareAccessToken/${uid}`)
                              .once('value').then((userToken) => {
-
-        (SquareConnect.ApiClient.instance)
-        .authentications["oauth2"]
-          .accessToken = userToken.val();
+        (SquareConnect.ApiClient.instance).authentications["oauth2"].accessToken = userToken.val();
 
         const catalogApi = new SquareConnect.CatalogApi();
-
         catalogApi.listCatalog().then((catalog) => {
-          console.log(catalog);
           let formattedResponse = catalog.objects.map((elem) => {
             return axios.post('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=AIzaSyDrrp3ST84F35MLpjOysrG3X-VYhUq1j8o', {
-                "longDynamicLink": `https://checkout.page.link/?link=https://checkout-now.firebaseapp.com/checkout/${(uid.split(":"))[1]}/${elem.item_data.variations[0].id}`,
+                "longDynamicLink": `https://checkout.page.link/?link=https://checkout-now.firebaseapp.com/checkout/` +
+                                    `${(uid.split(":"))[1]}/${elem.item_data.variations[0].id}`,
                 "suffix": {
                   "option": "SHORT"
                 }
@@ -41,37 +37,15 @@ exports.catalog = functions.https.onRequest((request, response) => {
                 price: elem.item_data.variations[0].item_variation_data.price_money,
                 checkoutUrl: resp.data.shortLink
               }
-            })
-            .catch(err => console.log(err))
-            // return {
-            //   name: elem.item_data.name,
-            //   catalogId: elem.id,
-            //   varId: elem.item_data.variations[0].id,
-            //   price: elem.item_data.variations[0].item_variation_data.price_money,
-            //   checkoutUrl: `https://checkout-now.firebaseapp.com/checkout/`+
-            //                `${(uid.split(":"))[1]}/${elem.item_data.variations[0].id}`
-            // }
+            }).catch(err => console.log(err))
           });
-          Promise.all(formattedResponse).then((values) => {
-            response.json(values);
-            return;
-          }).catch( err => console.log(err));
-          // response.json(Promise.all(formattedResponse));
+          Promise.all(formattedResponse).then((values) => { response.json(values); return; }).catch( err => console.log(err));
           return;
-        }).catch((error) => {
-          console.log(error);
-          response.send(error);
-        });
-
-        return;
-      }).catch(error => console.log(error));
+        }).catch((error) => { console.log(error); response.send(error); });
+          return;
+        }).catch(error => console.log(error));
       return;
-    }).catch( (error) => {
-      // Handle error
-      response.send(error);
-      return;
-    });
-
+    }).catch( (error) => { response.send(error); return; });
 });
 
 exports.authorize = functions.https.onRequest((request, response) => {
@@ -145,8 +119,6 @@ exports.code = functions.https.onRequest((request, response) => {
   const redirectURI = "https://checkout-now.firebaseapp.com/callback";
   let cookieState = request.get('cookie').slice(request.get('cookie').indexOf("__session=") + "__session=".length, request.get('cookie').length);
 
-  console.log(cookieState, " ", request.body.state);
-
   if (cookieState === request.body.state) {
     axios.post(tokenURL, {
       client_id: functions.config().square.prod.app_id,
@@ -177,13 +149,13 @@ exports.code = functions.https.onRequest((request, response) => {
               return;
             })
             .catch(error => {
-              console.log(error)
+              console.log(error);
               response.send(error);
             })
         )
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
         response.send(error);
       });
   } else {
@@ -193,9 +165,7 @@ exports.code = functions.https.onRequest((request, response) => {
 });
 
 const app = express();
-
 app.get('/checkout/:userId/:variantId', (request, response) => {
-
   admin.database()
        .ref(`/squareAccessToken/square:${request.params.userId}`)
        .once('value').then((userToken) => {
@@ -203,7 +173,6 @@ app.get('/checkout/:userId/:variantId', (request, response) => {
     (SquareConnect.ApiClient.instance)
       .authentications["oauth2"]
       .accessToken = userToken.val();
-
     const catalogApi = new SquareConnect.CatalogApi();
 
     catalogApi.retrieveCatalogObject(request.params.variantId).then((item) => {
@@ -221,14 +190,12 @@ app.get('/checkout/:userId/:variantId', (request, response) => {
           ],
         }
       }
-
       checkoutApi.createCheckout(locationId, checkoutReq).then((returnedCheckout)=>{
         response.redirect(returnedCheckout.checkout.checkout_page_url);
         return;
       }).catch((error)=>{
         response.send(error);
       });
-
       return;
     }).catch(error=>response.send(error));
     const checkoutApi = new SquareConnect.CheckoutApi();
@@ -236,7 +203,6 @@ app.get('/checkout/:userId/:variantId', (request, response) => {
     return;
 }).catch(error=>response.send(error))
 });
-
 exports.checkout = functions.https.onRequest(app);
 
 function signInFirebaseTemplate(token, email) {

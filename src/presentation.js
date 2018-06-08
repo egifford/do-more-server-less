@@ -15,6 +15,7 @@ import {
   Text,
   Image,
   Fill,
+  // Fit,
   Layout,
   Appear,
   // Table,
@@ -43,6 +44,10 @@ import OAuth from './img/OAuth.png';
 import CheckEmail from './img/CheckEmail.png';
 import CheckoutButtons from './img/CheckoutButtons.png';
 import Checkout from './img/Checkout.png';
+import Authorize from './img/Authorize.png';
+import GetToken from './img/GetToken.png';
+import Catalog from './img/Catalog.png';
+import HandleCheckout from './img/HandleCheckout.png';
 
 // Require CSS
 require('normalize.css');
@@ -218,7 +223,7 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 10 */}
-      <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="secondary" bgColor="tertiary">
             &nbsp;Azure Functions&nbsp;
           </Heading>
@@ -303,9 +308,37 @@ export default class Presentation extends React.Component {
         <Slide transition={['slide']} bgImage={Checkout} textColor="primary">
         </Slide>
       {/* Slide 21 */}
+        <Slide transition={['slide']} bgColor="primary" textColor="primary">
+          <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Authorization URL&nbsp;
+          </Heading>
+          <Image src={Authorize} />
+        </Slide>
+      {/* Slide 22 */}
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
+          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Get Token&nbsp;
+          </Heading>
+          <Image src={GetToken} />
+        </Slide>
+      {/* Slide 23 */}
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
+          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Get Catalog&nbsp;
+          </Heading>
+          <Image src={Catalog} />
+        </Slide>
+      {/* Slide 23 */}
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
+          <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Handle Checkout&nbsp;
+          </Heading>
+          <Image src={HandleCheckout} />
+        </Slide>
+      {/* Slide 21 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
-            &nbsp;Why my application sucks&nbsp;
+            &nbsp;Where my application sucks&nbsp;
           </Heading>
           <List bold textColor="tertiary">
             <Appear>
@@ -402,6 +435,40 @@ export default class Presentation extends React.Component {
             I never had to configure a server.
           </Text>
           </Appear>
+        </Slide>
+      {/* Slide 25 */}
+        <Slide transition={['spin']} bgColor="primary" textColor="primary">
+          <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
+            &nbsp;Where serverless can shine&nbsp;
+          </Heading>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            ASYNC Tasks like webhooks, image processing, etc...
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            ETL processing
+          </Text>
+          </Appear>
+          <br />
+          <Appear>
+          <Text textColor="tertiary" textSize="40px" bold>
+            Batch processing
+          </Text>
+          </Appear>
+        </Slide>
+      {/* Slide 2 */}
+        <Slide transition={['zoom']} bgColor="primary">
+          <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out" >
+            <NameSvg />
+          </MtSvgLines>
+          <Text>&nbsp;</Text>
+          <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out">
+            <LogoSvg />
+          </MtSvgLines>
         </Slide>
       </Deck>
     );
