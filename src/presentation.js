@@ -25,7 +25,6 @@ import {
 
 // Import Custom Components
 import LanguageTable from './LanguageTable';
-import CodeSlide from 'spectacle-code-slide';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
@@ -44,8 +43,6 @@ import OAuth from './img/OAuth.png';
 import CheckEmail from './img/CheckEmail.png';
 import CheckoutButtons from './img/CheckoutButtons.png';
 import Checkout from './img/Checkout.png';
-
-import serverlessFunctions from './serverlessFunctions.example';
 
 // Require CSS
 require('normalize.css');
@@ -305,12 +302,6 @@ export default class Presentation extends React.Component {
       {/* Slide 20 */}
         <Slide transition={['slide']} bgImage={Checkout} textColor="primary">
         </Slide>
-      {/* Slide 21 */}
-        <CodeSlide
-          transition={[]}
-          lang="js"
-          code={require("raw-loader!./serverlessFunctions.example")}
-        />
       {/* Slide 21 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
