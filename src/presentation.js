@@ -74,13 +74,27 @@ export default class Presentation extends React.Component {
         theme={theme}
       >
       {/* Slide 1 */}
-        <Slide transition={['fade']} bgImage={jsCode} bgDarken="0.75">
+        <Slide transition={['fade']} bgImage={jsCode} bgDarken="0.75" notes={
+          `Overview<br/>
+          - We'll cover a bit about my background<br/>
+          - A little about what is and isn't serverless<br/>
+          - The current landscape for serverless providers<br/>
+          - Discuss an actual serverless application that I built<br/>
+          - Some do's and don'ts for serverless<br/>
+          - The benefits you get from going serverless and where it shines`
+        }>
           <Heading size={1} caps lineHeight={1} textColor="tertiary" >
             Do More, Server Less
           </Heading>
         </Slide>
       {/* Slide 2 */}
-        <Slide transition={['zoom']} bgColor="primary">
+        <Slide transition={['zoom']} bgColor="primary" notes={
+          `- Previously did Dev Evangelism at Shippo, a multi-carrier shipping API<br/>
+           - Started writing about serverless and ways of using it for webhooks<br/>
+           - Came over to Square to continue promoting serverless for payments<br/>
+           - I previously wrote an article on using Google Cloud functions for processing webhooks<br/>
+           - Also wrote about making a simple serverless ecommerce site using Square checkout and AWS S3 with Lambda`
+        }>
           <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out" >
             <NameSvg />
           </MtSvgLines>
@@ -90,7 +104,12 @@ export default class Presentation extends React.Component {
           </MtSvgLines>
         </Slide>
       {/* Sldie 3 */}
-        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
+        <Slide transition={['fade']} bgColor="primary" textColor="tertiary" notes={
+          `3 key things for telling its actually serverless<br/>
+           - You don't actually control the server resources<br/>
+           - Code is broken up into neat little individual functions (lookin' at you App Engine!)<br/>
+           - If it's not running, you're not paying`
+        }>
           <Heading size={2} fit caps lineHeight={2} textColor="tertiary" bgColor="secondary">
             &nbsp;What qualifies as serverless?&nbsp;
           </Heading>
@@ -113,13 +132,21 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
       {/* Slide 4 */}
-        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary" notes={
+          `Somethings sounds serverless, but they really aren't`
+        }>
           <BlockQuote>
             <Quote>Where things get funky</Quote>
           </BlockQuote>
         </Slide>
       {/* Slide 5 */}
-        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary" notes={
+          `There are a few tools out there that are <em>sorta</em> serverless but not quite<br/>
+          - OpenFaaS <br/>
+          - Fn Project <br/>
+          - Kubeless <br/>
+          - OpenWhisk? I omitted since there is a place to deploy it, but you can run it yourself`
+        }>
           <Heading size={2} fit caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;Containerized Serverless&nbsp;
           </Heading>
@@ -140,7 +167,12 @@ export default class Presentation extends React.Component {
             </Appear>
         </Slide>
       {/* Slide 6 */}
-        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary" notes={
+          `Let's look at why I wouldn't really call these services serverless <br/>
+          - You still have to manage servers and allocate resources<br/>
+          - You might deploy code to your private serverless container, but there is still a container <br/>
+          - The server you're managing is always running, so you're always paying for it`
+        }>
           <Heading fit size={1} caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;Why are they not really serverless?&nbsp;
           </Heading>
@@ -163,7 +195,16 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
       {/* Slide 7 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `So you want to do actual serverless, so you need a provider<br/>
+          There are quite a few different providers, but I'll cover the major player right now <br/>
+          - AWS with their Lambda service (also Lambda at Edge)<br/>
+          - Google Cloud with Cloud functions + Firebase <br/>
+          - Microsoft Azure with Azure functions <br/>
+          - IBM OpenWhisk (Cloud Functions?) This can be done in a containery way<br/>
+          <br/>
+          Some others not listed but worth mentioning are Spotnist and Stdlib, but they're likely mostly still leaning on Lambda`
+        }>
           <Heading padding="10px" fit size={1} caps lineHeight={2} textColor="tertiary" bgColor="primary">
             &nbsp;So where can I find serverless?&nbsp;
           </Heading>
@@ -195,7 +236,14 @@ export default class Presentation extends React.Component {
             </Appear>
         </Slide>
       {/* Slide 8 */}
-        <Slide transition={['slide']} bgColor="primary" textColor="secondary">
+        <Slide transition={['slide']} bgColor="primary" textColor="secondary" notes={
+          `Pretty much coined the term serverless<br/>
+          - Yes, its a marketing phrase and misleading <br/>
+          - Started back in 2015, they have officially been doing it the longest <br/>
+          - Initially it was structured a lot around your own cloud's events to better react to changes in your system <br/>
+          - Be wary of HTTP calls, it gets expensive very fast <br/>
+          - Tooling is a bit difficult to use but there are services that help facilitate deployment like Serverless and ClaudiaJS`
+        }>
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;AWS Lambda&nbsp;
           </Heading>
@@ -209,7 +257,14 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 9 */}
-        <Slide transition={['slide']} bgColor="primary" textColor="secondary">
+        <Slide transition={['slide']} bgColor="primary" textColor="secondary" notes={
+          `Google's answer to Lambda <br/>
+          - Great for handling http <br/>
+          - Useful tooling with local testing (doesn't always work) <br/>
+          - The most limited in available languages, since they only offer JavaScript (not that I'm complaining about that)<br/>
+          - Can be used directly with Firebase and would recommend trying it out if you're interested, since the Firebase tools are a breaze to use <br/>
+          - Although Serverless says they support Google Cloud, it really pails in comparison to support for Lambda`
+        }>
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;Cloud Functions&nbsp;
           </Heading>
@@ -223,7 +278,11 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 10 */}
-        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary" notes={
+          `Offers C# and F# support for the Windows folks <br/>
+          - Has been fairly competative on pricing <br/>
+          - Very big on browser IDE and VS Code integrations <br/>`
+        }>
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="secondary" bgColor="tertiary">
             &nbsp;Azure Functions&nbsp;
           </Heading>
@@ -237,7 +296,12 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 11 */}
-        <Slide transition={['slide']} bgColor="secondary" textColor="primary">
+        <Slide transition={['slide']} bgColor="secondary" textColor="primary" notes={
+          `Most versatile in language support due to leaning on Apache OpenWhisk <br/>
+          - A fairly challening an somewhat confusing console for getting started <br/>
+          - You can bundle up your code and containerize it for IBM to manage through Apache OpenWhisk <br/>
+          - I've not really work with OpenWhisk, so I don't really know of the benefits vs drawbacks of going that route`
+        }>
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="secondary" bgColor="tertiary">
             &nbsp;IBM OpenWhisk&nbsp;
           </Heading>
@@ -251,7 +315,12 @@ export default class Presentation extends React.Component {
           </Layout>
         </Slide>
       {/* Slide 12 */}
-        <Slide transition={['spin']} bgColor="primary" textColor="secondary">
+        <Slide transition={['spin']} bgColor="primary" textColor="secondary" notes={
+            `Here we have a limited look at language support <br/>
+            - I would argue that AWS has the most solid support in each of their respective languages <br/>
+            - Although you can write code in each of these language for each of these platforms, there can be serious performance drawbacks depending on the platform or language <br/>
+            - There have been a few writeups going over the performance difference between languages, but generally one this is true... <br/>`
+        }>
           <Heading fit padding="10px" size={1} caps lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;Languages&nbsp;
           </Heading>
@@ -262,53 +331,95 @@ export default class Presentation extends React.Component {
           <Text textColor="primary" bgColor="tertiary" textAlign="right" textSize="20px">* available via Docker</Text>
         </Slide>
       {/* Slide 13 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `It should come at no surprise, its the oldest language for serverless and as such, has been optimized the most <br/>
+          Being a JavaScript person myself, I'm pretty happy about this.`
+        }>
           <BlockQuote>
             <Quote> JavaScript is the king of serverless! </Quote>
             <Cite> Me </Cite>
           </BlockQuote>
         </Slide>
       {/* Slide 14 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `Now that we've explored the landscape, lets take a look at an actual serverless application and how its setup`
+        }>
           <Heading>
             Let's talk about an actual serverless application
           </Heading>
         </Slide>
       {/* Slide 15 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `Square Checkout Now <br/>
+          - Allows you to let your customer click a link to instantly checkout an item from your catalog <br/>
+          - We have a couple functions for handling OAuth to Square <br/>
+          - We manage our users via Firebase and have a passwordless login via magic email links <br/>
+          - Static hosting through Firebase since it sorta just came with their user management <br/>
+          - Generation of shortlinks so you can use them for social selling or just creating a button with the link as your href`
+        }>
           <Heading textColor="primary" bgColor="tertiary">
             What I built
           </Heading>
           <br />
+          <Appear>
           <Quote textSize="36px" bgColor="secondary" textColor="primary">
             A service that generates links from Square checkout to instantly checkout with an item from your catalog.
           </Quote>
+          </Appear>
           <br />
+          <Appear>
           <Text textColor="tertiary" textAlign="left"> What it contains: </Text>
+          </Appear>
           <List textColor="tertiary">
-            <ListItem> OAuth to Square </ListItem>
-            <ListItem> User managment via Firebase </ListItem>
-            <ListItem> Static site via Firebase Hosting </ListItem>
+            <Appear>
+              <ListItem> OAuth to Square </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem> User managment via Firebase </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem> Static site via Firebase Hosting </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem> Buy now short links for selling online wherever links are supported </ListItem>
+            </Appear>
           </List>
         </Slide>
       {/* Slide 16 */}
-        <Slide transition={['slide']} bgImage={checkoutNow} textColor="primary">
+        <Slide transition={['slide']} bgImage={checkoutNow} textColor="primary" notes={
+          `Here we have our main login screen`
+        }>
         </Slide>
       {/* Slide 17 */}
-        <Slide transition={['slide']} bgImage={OAuth} textColor="primary">
+        <Slide transition={['slide']} bgImage={OAuth} textColor="primary" notes={
+          `The button will initiate our redirect to the Authentication URL provided by our authenticate cloud function`
+        }>
         </Slide>
       {/* Slide 18 */}
-        <Slide transition={['slide']} bgImage={CheckEmail} textColor="primary">
+        <Slide transition={['slide']} bgImage={CheckEmail} textColor="primary" notes={
+          `We get redirected back and send out auth code to our "code" function to create the user in Firebase and store their Square access token and send their login email`
+        }>
         </Slide>
       {/* Slide 19 */}
-        <Slide transition={['slide']} bgColor="tertiary" textColor="primary">
+        <Slide transition={['slide']} bgColor="tertiary" textColor="primary" notes={
+          `Once we click the link, we're directed into out app and auto-logged in and sent back our list of catalog items with their accompanying short links`
+        }>
           <Image src={CheckoutButtons} />
         </Slide>
       {/* Slide 20 */}
-        <Slide transition={['slide']} bgImage={Checkout} textColor="primary">
+        <Slide transition={['slide']} bgImage={Checkout} textColor="primary" notes={
+          `If we click any of those links, we'll look-up the Square user and catalog item associated with this URL <br/>
+          - Then generate a checkout URL through the Square Checkout API with the specified catalog item as a line item for that order <br/>
+          - The example here more demonstrates digital goods, since we're not capturing shipping info, but we could. <br/>
+          - It might become more complicated if you wanted dynamic shipping rates, but works exceedingly well for flat-rate shipping`
+        }>
         </Slide>
       {/* Slide 21 */}
-        <Slide transition={['slide']} bgColor="primary" textColor="primary">
+        <Slide transition={['slide']} bgColor="primary" textColor="primary" notes={
+          `This is our Authorization function that simply does the job of generating our URL to redirect the user to when authenticating them <br/>
+           I'll openly admit that is something that could likely just be coded into the client-side application <br/>
+           I just wanted to be sure to generate the state value myself, rather than on the client`
+        }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Authorization URL&nbsp;
           </Heading>
@@ -328,14 +439,14 @@ export default class Presentation extends React.Component {
           </Heading>
           <Image src={Catalog} />
         </Slide>
-      {/* Slide 23 */}
+      {/* Slide 24 */}
         <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Handle Checkout&nbsp;
           </Heading>
           <Image src={HandleCheckout} />
         </Slide>
-      {/* Slide 21 */}
+      {/* Slide 25 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Where my application sucks&nbsp;
@@ -358,7 +469,7 @@ export default class Presentation extends React.Component {
             </Appear>
           </List>
         </Slide>
-      {/* Slide 22 */}
+      {/* Slide 26 */}
       <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Cold starts&nbsp;
@@ -382,7 +493,7 @@ export default class Presentation extends React.Component {
           </Text>
           </Appear>
         </Slide>
-      {/* Slide 23 */}
+      {/* Slide 27 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Version Control&nbsp;
@@ -400,7 +511,7 @@ export default class Presentation extends React.Component {
           </Text>
           </Appear>
         </Slide>
-      {/* Slide 24 */}
+      {/* Slide 28 */}
         <Slide transition={['spin']} bgColor="secondary" textColor="primary">
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Testing&nbsp;
@@ -418,7 +529,7 @@ export default class Presentation extends React.Component {
           </Text>
           </Appear>
         </Slide>
-      {/* Slide 25 */}
+      {/* Slide 29 */}
         <Slide transition={['spin']} bgColor="primary" textColor="primary">
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Silver Lining&nbsp;
@@ -436,7 +547,7 @@ export default class Presentation extends React.Component {
           </Text>
           </Appear>
         </Slide>
-      {/* Slide 25 */}
+      {/* Slide 30 */}
         <Slide transition={['spin']} bgColor="primary" textColor="primary">
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Where serverless can shine&nbsp;
@@ -460,7 +571,7 @@ export default class Presentation extends React.Component {
           </Text>
           </Appear>
         </Slide>
-      {/* Slide 2 */}
+      {/* Slide 31 */}
         <Slide transition={['zoom']} bgColor="primary">
           <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out" >
             <NameSvg />
