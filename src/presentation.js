@@ -418,7 +418,7 @@ export default class Presentation extends React.Component {
         <Slide transition={['slide']} bgColor="primary" textColor="primary" notes={
           `This is our Authorization function that simply does the job of generating our URL to redirect the user to when authenticating them <br/>
            I'll openly admit that is something that could likely just be coded into the client-side application <br/>
-           I just wanted to be sure to generate the state value myself, rather than on the client`
+           I just wanted to be sure to generate the state value myself and store it in a session cookie to verify later`
         }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Authorization URL&nbsp;
@@ -426,28 +426,45 @@ export default class Presentation extends React.Component {
           <Image src={Authorize} />
         </Slide>
       {/* Slide 22 */}
-        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
-          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary" notes={
+          `- We take our code and then query Square to get our token<br/>
+           - Create an account in Firebase for that user<br/>
+           - Storing the Square access token for that user<br/>
+           - Sending a sign-in email link to the associated email address`
+        }>
+          <Heading fill lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;Get Token&nbsp;
           </Heading>
           <Image src={GetToken} />
         </Slide>
       {/* Slide 23 */}
-        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
-          <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary" notes={
+          `- We're just taking our token from the front-end, looking up our Square Merchant, and pulling their whole catalog to iterate over and assemble all of our shortlinks<br/>
+           - We have our URL's constructed to be /Merchant ID/Catalog ID and then create a shortlink<br/>`
+        }>
+          <Heading fill lineHeight={1} textColor="primary" bgColor="tertiary">
             &nbsp;Get Catalog&nbsp;
           </Heading>
           <Image src={Catalog} />
         </Slide>
       {/* Slide 24 */}
-        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary">
+        <Slide align="center flex-start" transition={['slide']} bgColor="primary" textColor="primary" notes={
+          `- Here we actually wrapped our cloud function with an Express application<br/>
+           - This lets up better parse the Square Merchant ID and Catalog ID from the URI route<br/>`
+        }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Handle Checkout&nbsp;
           </Heading>
           <Image src={HandleCheckout} />
         </Slide>
       {/* Slide 25 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `So, since my application it should be awesome and infititely scalable, right?<br/>
+          - My application actually sucks in a few ways<br/>
+          - Cold Starts
+          - Version Control
+          - Testing`
+        }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Where my application sucks&nbsp;
           </Heading>
@@ -470,7 +487,9 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
       {/* Slide 26 */}
-      <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+        `- Cold starts are painful, if a lot of people click on the links at one time, they'll have to wait for a new instance of my function to be spun up to service their request<br/>`
+        }>
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Cold starts&nbsp;
           </Heading>
@@ -494,7 +513,9 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
       {/* Slide 27 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `- Version control can be really annoying. Its not always easy to see which version of your functions are currently deployed. This is something that the providers are working on, but if I had another developer working on my app, I'd have a hard time troubleshooting why behavior suddenly changed<br/>`
+        }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Version Control&nbsp;
           </Heading>
@@ -512,7 +533,10 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
       {/* Slide 28 */}
-        <Slide transition={['spin']} bgColor="secondary" textColor="primary">
+        <Slide transition={['spin']} bgColor="secondary" textColor="primary" notes={
+          `- Testing can be rather difficult. Google cloud offers local function testing, but it doesn't always work as expected and can be hard when trying to react to and test cloud provider events<br/>
+           - We can hope the cloud providers come up with solutions for this, since its really annoying to do a deploy/run/test cycle over and over.`
+        }>
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Testing&nbsp;
           </Heading>
@@ -530,7 +554,10 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
       {/* Slide 29 */}
-        <Slide transition={['spin']} bgColor="primary" textColor="primary">
+        <Slide transition={['spin']} bgColor="primary" textColor="primary" notes={
+          `If I don't care about the small percentage of users getting a slow initial response, I am not needing to manage my scaling<br/>
+           I never had to configure a server, ssh in to troubleshoot, and maybe I don't even <em>need</em> devops`
+        }>
           <Heading fill lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Silver Lining&nbsp;
           </Heading>
@@ -548,7 +575,12 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
       {/* Slide 30 */}
-        <Slide transition={['spin']} bgColor="primary" textColor="primary">
+        <Slide transition={['spin']} bgColor="primary" textColor="primary" notes={
+          `There are quite a few areas that serverless can really shine for you:<br/>
+          - Doing async tasks in your cloud environment, like servicing webhooks, doing image or file process<br/>
+          - ETL processing, something we actually did when I was at Shippo. We were able to build and load our data warehouse using Lambda functions<br/>
+          - Batch processing. Rather than running some chron job at specific intervals (although you can do certain intervals), you can just run the batch when it hits a certain threshold`
+        }>
           <Heading fit lineHeight={2} textColor="primary" bgColor="tertiary">
             &nbsp;Where serverless can shine&nbsp;
           </Heading>
