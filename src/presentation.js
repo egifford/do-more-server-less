@@ -611,9 +611,10 @@ export default class Presentation extends React.Component {
             <NameSvg />
           </MtSvgLines>
           <Text>&nbsp;</Text>
-          <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out">
+          {/* <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out">
             <LogoSvg />
-          </MtSvgLines>
+          </MtSvgLines> */}
+          <Image src={SquareLogoFullWhite} />
         </Slide>
       </Deck>
     );
