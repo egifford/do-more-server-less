@@ -48,6 +48,7 @@ import Authorize from './img/Authorize.png';
 import GetToken from './img/GetToken.png';
 import Catalog from './img/Catalog.png';
 import HandleCheckout from './img/HandleCheckout.png';
+import SquareLogoFullWhite from './img/Square_Logotype_white.png';
 
 // Require CSS
 require('normalize.css');
@@ -99,9 +100,10 @@ export default class Presentation extends React.Component {
             <NameSvg />
           </MtSvgLines>
           <Text>&nbsp;</Text>
-          <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out">
+          {/* <MtSvgLines animate={ true } duration={ 5000 } playback="infinite alternate both" timing="ease-in-out">
             <LogoSvg />
-          </MtSvgLines>
+          </MtSvgLines> */}
+          <Image src={SquareLogoFullWhite} />
         </Slide>
       {/* Sldie 3 */}
         <Slide transition={['fade']} bgColor="primary" textColor="tertiary" notes={
