@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.653da357.css",
   "main.css.map": "static/css/main.653da357.css.map",
-  "main.js": "static/js/main.57144999.js",
-  "main.js.map": "static/js/main.57144999.js.map",
+  "main.js": "static/js/main.bcaf2415.js",
+  "main.js.map": "static/js/main.bcaf2415.js.map",
   "static/media/Authorize.png": "static/media/Authorize.1e6cfbd1.png",
   "static/media/Catalog.png": "static/media/Catalog.2361a6a0.png",
   "static/media/CheckEmail.png": "static/media/CheckEmail.c63d1877.png",
@@ -11,6 +11,7 @@
   "static/media/GetToken.png": "static/media/GetToken.1c30e19a.png",
   "static/media/HandleCheckout.png": "static/media/HandleCheckout.f035e904.png",
   "static/media/OAuth.png": "static/media/OAuth.ca06e150.png",
+  "static/media/Square_Logotype_white.png": "static/media/Square_Logotype_white.7e50f9b1.png",
   "static/media/checkout_now.png": "static/media/checkout_now.3327e292.png",
   "static/media/js-code.jpg": "static/media/js-code.8b3dc465.jpg"
 }
